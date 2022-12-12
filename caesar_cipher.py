@@ -1,13 +1,19 @@
 import sys
 
 def generate_key(n):
-    letters = "ABCDEFGHIJKLMNOPQRSTUVWYWZ"
+    letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     key = {}
     count = 0
     for c in letters:
         key[c] = letters[(count + n) % len(letters)]
         count += 1
     return key
+
+def generate_decryption_key(key):
+    dkey = {}
+    for c in key:
+        dkey[key[c]] = c
+    return dkey
 
 def encrypt_message(key, message):
     cipher = ""
@@ -34,4 +40,8 @@ num = get_num()
 key = generate_key(num)
 message = input("Please write the message to be encrypted: ").upper()
 cipher = encrypt_message(key, message)
+dkey = generate_decryption_key(key)
+plaintext = encrypt_message(dkey, cipher)
+
 print("Ciphertext:\n", cipher)
+print("Plaintext:\n", plaintext)
