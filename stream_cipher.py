@@ -23,13 +23,18 @@ def flip_bit(cipher, probability):
         b.append(c)
     return bytes(b)
 
+def modification(cipher):
+    mod = [0] * len(cipher)
+    mod[3] = ord(" ")^ ord("1")
+    return bytes([mod[i] ^ cipher[i] for i in range(len(cipher))])
+
 key = KeyStream(10)
-message = "This is a message.".encode()
+message = "Modify this message.".encode()
 print(message)
 cipher = encrypt(key, message)
 print(cipher)
 
-cipher = flip_bit(cipher, 5)
+cipher = modification(cipher)
 
 key = KeyStream(10)
 message = encrypt(key, cipher)
