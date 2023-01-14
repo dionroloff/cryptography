@@ -28,13 +28,27 @@ def modification(cipher):
     mod[3] = ord(" ")^ ord("1")
     return bytes([mod[i] ^ cipher[i] for i in range(len(cipher))])
 
+def get_key(message, cipher):
+    return bytes([message[i] ^ cipher[i] for i in range(len(cipher))])
+
+new_message = "This is a new message, meant to be encrypted.".encode()
+
 key = KeyStream(10)
-message = "Modify this message.".encode()
+message = new_message
 print(message)
 cipher = encrypt(key, message)
 print(cipher)
 
-cipher = modification(cipher)
+intercept_key_stream = get_key(new_message, cipher)
+
+key = KeyStream(10)
+message = encrypt(key, cipher)
+print(message)
+
+message = "This is another message.".encode()
+key = KeyStream(10)
+cipher = encrypt(key, message)
+print(cipher)
 
 key = KeyStream(10)
 message = encrypt(key, cipher)
