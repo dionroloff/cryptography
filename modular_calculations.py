@@ -3,7 +3,7 @@ import math
 import random
 
 def is_prime(n):
-    for i in range(2, math.isqrt(n)):
+    for i in range(2, math.isqrt(n) + 1):
         if n % i == 0:
             return False
     return True
@@ -13,5 +13,5 @@ def get_prime(size):
         prime = random.randrange(size, 2*size)
         if is_prime(prime):
             return prime
-
+print(is_prime(9))
 print(get_prime(1000))
