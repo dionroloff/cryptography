@@ -13,5 +13,18 @@ def get_prime(size):
         prime = random.randrange(size, 2*size)
         if is_prime(prime):
             return prime
-print(is_prime(9))
-print(get_prime(1000))
+
+def is_generator(g, prime):
+    for i in range(1, prime - 1):
+        if (g**1) % prime == 1:
+            return False
+    return True
+
+def get_generator(prime):
+    for g in range(2, prime):
+        if is_generator(g, prime):
+            return g
+
+p = get_prime(10000)
+g = get_generator(p)
+print(g, p)
