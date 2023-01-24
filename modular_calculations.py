@@ -28,3 +28,17 @@ def get_generator(prime):
 p = get_prime(10000)
 g = get_generator(p)
 print(g, p)
+
+a = random.randrange(0, p)
+g_a = (g**a) % p
+print("g_a: ", g_a)
+
+b = random.randrange(0, p)
+g_b = (g**b) % p
+print("g_b: ", g_b)
+
+g_ab = (g_b**a) % p
+print("g_ab: ", g_ab)
+
+g_ab = (g_a**b) % p
+print("g_ab: ", g_ab)
