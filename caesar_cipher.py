@@ -35,13 +35,21 @@ def get_num():
     except:
         print("That is not a number.")
         sys.exit(1)
-    
+
+def get_options():
+    for i in range(26):
+        dkey = generate_key(i)
+        message = encrypt_message(dkey, cipher)
+        print(message, ", Key of ", i + 1)
+
 num = get_num() 
 key = generate_key(num)
 message = input("Please write the message to be encrypted: ").upper()
 cipher = encrypt_message(key, message)
 dkey = generate_decryption_key(key)
 plaintext = encrypt_message(dkey, cipher)
+
+options = get_options()
 
 print("Ciphertext:\n", cipher)
 print("Plaintext:\n", plaintext)
